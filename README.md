@@ -1,25 +1,25 @@
-# The Scugog Scoop — Streamlined Version
+# The Scugog Scoop — Basic Launch Version
 
-## Main pages
+This version intentionally keeps the website simple.
 
-- Home
-- Council
-- News
-- Opinion
-- Election 2026
-- About
+## Clean URLs
 
-## News stories included
+- `/`
+- `/council/`
+- `/news/`
+- `/opinion/`
+- `/election/`
+- `/about/`
+- `/news/port-perry-fairgrounds/`
+- `/news/reach-street-development/`
 
-- Port Perry Fairgrounds
-- Reach Street Development
+## Important
 
-## Shared files
+Upload the complete folder structure to the root of your GitHub repository.
 
-- `styles.css` controls all styling and mobile layout.
-- `app.js` controls shared navigation, footer and mobile menu.
-- `assets/fairgrounds.jpg` is used for the Fairgrounds story.
+Keep:
+- `CNAME`
+- `.nojekyll`
+- `assets/fairgrounds.jpg`
 
-## Important before public launch
-
-Add official source links, exact meeting dates, report numbers and verified details to both news stories.
+The site tells visitors that it is new and will continue to grow.
