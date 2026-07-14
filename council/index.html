@@ -2,35 +2,847 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="description" content="Council updates and local public records.">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,viewport-fit=cover"
+  >
+
+  <meta
+    name="description"
+    content="Meet the Mayor, Regional Councillor and five Ward Councillors serving on Scugog Township Council for the 2022–2026 term."
+  >
+
   <meta name="theme-color" content="#17372b">
-  <title>Council | The Scugog Scoop</title>
+
+  <title>Scugog Council 2022–2026 | The Scugog Scoop</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="/styles.css">
+
+  <style>
+    .council-intro {
+      max-width: 760px;
+    }
+
+    .council-overview {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .council-stat {
+      padding: 24px;
+      border: 1px solid rgba(23, 55, 43, 0.12);
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .council-stat strong {
+      display: block;
+      margin-bottom: 7px;
+      color: #17372b;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+    }
+
+    .council-stat span {
+      color: #5d6b64;
+      font-size: 0.93rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .council-section-heading {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .council-section-heading h2 {
+      margin-bottom: 12px;
+    }
+
+    .council-section-heading p {
+      color: #5d6b64;
+      font-size: 1.04rem;
+      line-height: 1.75;
+    }
+
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .ward-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .council-profile {
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(23, 55, 43, 0.12);
+      border-radius: 22px;
+      background: #fff;
+      box-shadow: 0 14px 40px rgba(23, 55, 43, 0.07);
+      transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .council-profile:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(23, 55, 43, 0.12);
+    }
+
+    .council-profile-featured {
+      display: grid;
+      grid-template-columns: minmax(210px, 42%) 1fr;
+      min-height: 350px;
+    }
+
+    .council-photo {
+      overflow: hidden;
+      position: relative;
+      background: #e9efec;
+    }
+
+    .council-profile:not(.council-profile-featured) .council-photo {
+      aspect-ratio: 4 / 3;
+    }
+
+    .council-profile-featured .council-photo {
+      min-height: 100%;
+    }
+
+    .council-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 300ms ease;
+    }
+
+    .council-profile:hover .council-photo img {
+      transform: scale(1.025);
+    }
+
+    .council-profile-body {
+      display: flex;
+      flex-direction: column;
+      padding: 26px;
+    }
+
+    .council-profile-featured .council-profile-body {
+      justify-content: center;
+      padding: 34px;
+    }
+
+    .council-role {
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 14px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: #edf4f0;
+      color: #17372b;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .council-profile h3 {
+      margin: 0 0 10px;
+      color: #17372b;
+      font-size: clamp(1.35rem, 2.4vw, 2rem);
+      font-weight: 900;
+      letter-spacing: -0.045em;
+      line-height: 1.08;
+    }
+
+    .council-profile:not(.council-profile-featured) h3 {
+      font-size: 1.45rem;
+    }
+
+    .council-description {
+      margin: 0 0 22px;
+      color: #5d6b64;
+      font-size: 0.96rem;
+      line-height: 1.65;
+    }
+
+    .council-contact {
+      display: grid;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 18px;
+      border-top: 1px solid rgba(23, 55, 43, 0.1);
+    }
+
+    .council-contact a {
+      width: fit-content;
+      color: #17372b;
+      font-size: 0.91rem;
+      font-weight: 750;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .council-contact a:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .civic-explainer {
+      display: grid;
+      grid-template-columns: minmax(230px, 0.7fr) minmax(0, 1.3fr);
+      gap: 34px;
+      align-items: start;
+    }
+
+    .civic-facts {
+      position: sticky;
+      top: 24px;
+      padding: 26px;
+      border-radius: 20px;
+      background: #17372b;
+      color: #fff;
+    }
+
+    .civic-facts h3 {
+      margin: 0 0 22px;
+      font-size: 1.2rem;
+    }
+
+    .civic-facts dl {
+      display: grid;
+      gap: 18px;
+      margin: 0;
+    }
+
+    .civic-facts div {
+      padding-bottom: 17px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .civic-facts div:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .civic-facts dt {
+      margin-bottom: 5px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .civic-facts dd {
+      margin: 0;
+      font-weight: 750;
+      line-height: 1.45;
+    }
+
+    .official-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .official-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 17px;
+      border: 1px solid rgba(23, 55, 43, 0.18);
+      border-radius: 12px;
+      color: #17372b;
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .official-link:hover {
+      background: #17372b;
+      color: #fff;
+    }
+
+    @media (max-width: 980px) {
+      .leadership-grid,
+      .ward-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .council-profile-featured {
+        display: block;
+      }
+
+      .council-profile-featured .council-photo {
+        aspect-ratio: 4 / 3;
+        min-height: 0;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .council-overview,
+      .leadership-grid,
+      .ward-grid,
+      .civic-explainer {
+        grid-template-columns: 1fr;
+      }
+
+      .civic-facts {
+        position: static;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .council-profile-body,
+      .council-profile-featured .council-profile-body {
+        padding: 22px;
+      }
+
+      .official-links {
+        display: grid;
+      }
+    }
+  </style>
 </head>
+
 <body>
+
   <div data-header></div>
+
   <main>
-<section class="hero">
-  <div class="container">
-    <span class="eyebrow">Council</span>
-    <h1>A simple Council <em>watchlist.</em></h1>
-    <p class="lead">This page will grow into a place for meeting dates, major agenda items, summaries and official links.</p>
-  </div>
-</section>
-<section class="section">
-  <div class="container card-grid">
-    <article class="simple-card"><h3>Port Perry Fairgrounds</h3><p>Discussion deferred to Q1 2027.</p></article>
-    <article class="simple-card"><h3>Reach Street development</h3><p>Public delegations and taxation questions before Council.</p></article>
-    <article class="simple-card"><h3>More coming</h3><p>Future meeting summaries and source links will be added as the site grows.</p></article>
-  </div>
-</section>
-</main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+
+        <span class="eyebrow">Council</span>
+
+        <div class="council-intro">
+          <h1>
+            Scugog Council,
+            <em>2022–2026.</em>
+          </h1>
+
+          <p class="lead">
+            Meet the seven elected officials representing the Township of
+            Scugog during the current municipal term.
+          </p>
+        </div>
+
+        <div class="council-overview">
+
+          <div class="council-stat">
+            <strong>7</strong>
+            <span>Elected members serving on Township Council</span>
+          </div>
+
+          <div class="council-stat">
+            <strong>5</strong>
+            <span>Local wards represented by individual councillors</span>
+          </div>
+
+          <div class="council-stat">
+            <strong>2022–26</strong>
+            <span>The current four-year municipal term</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- MAYOR AND REGIONAL COUNCILLOR -->
+    <section class="section">
+      <div class="container">
+
+        <div class="council-section-heading">
+          <span class="eyebrow">Township-wide representatives</span>
+
+          <h2>Mayor and Regional Councillor</h2>
+
+          <p>
+            The Mayor and Regional Councillor are elected by voters across
+            Scugog. Both serve on Township Council and represent Scugog at
+            Durham Regional Council.
+          </p>
+        </div>
+
+
+        <div class="leadership-grid">
+
+          <!-- MAYOR -->
+          <article class="council-profile council-profile-featured">
+
+            <div class="council-photo">
+              <img
+                src="/assets/2022_2026_council_pics/wilma-wotten.jpg"
+                alt="Scugog Mayor Wilma Wotten"
+                loading="eager"
+              >
+            </div>
+
+            <div class="council-profile-body">
+
+              <span class="council-role">Mayor</span>
+
+              <h3>Wilma Wotten</h3>
+
+              <p class="council-description">
+                Serves as the head of Scugog Council and represents the
+                Township as a member of Durham Regional Council.
+              </p>
+
+              <div class="council-contact">
+                <a href="mailto:wwotten@scugog.ca">
+                  wwotten@scugog.ca
+                </a>
+
+                <a href="tel:+19058091049">
+                  905-809-1049
+                </a>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- REGIONAL COUNCILLOR -->
+          <article class="council-profile council-profile-featured">
+
+            <div class="council-photo">
+              <img
+                src="/assets/2022_2026_council_pics/ian-mcdougall.jpg"
+                alt="Scugog Regional Councillor Ian McDougall"
+                loading="eager"
+              >
+            </div>
+
+            <div class="council-profile-body">
+
+              <span class="council-role">Regional Councillor</span>
+
+              <h3>Ian McDougall</h3>
+
+              <p class="council-description">
+                Serves on both Scugog Township Council and Durham Regional
+                Council, representing the Township on regional matters.
+              </p>
+
+              <div class="council-contact">
+                <a href="mailto:imcdougall@scugog.ca">
+                  imcdougall@scugog.ca
+                </a>
+
+                <a href="tel:+19058097347">
+                  905-809-7347
+                </a>
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- WARD COUNCILLORS -->
+    <section class="section">
+      <div class="container">
+
+        <div class="council-section-heading">
+          <span class="eyebrow">Local representatives</span>
+
+          <h2>Scugog’s five ward councillors</h2>
+
+          <p>
+            Each ward councillor is elected by residents of a specific
+            geographic area and represents local concerns at the Council
+            table.
+          </p>
+        </div>
+
+
+        <div class="ward-grid">
+
+          <!-- WARD 1 -->
+          <article class="council-profile">
+
+            <div class="council-photo">
+              <img
+                src="/assets/2022_2026_council_pics/david-le-roy.jpg"
+                alt="Scugog Ward 1 Councillor David Le Roy"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="council-profile-body">
+
+              <span class="council-role">Ward 1</span>
+
+              <h3>David Le Roy</h3>
+
+              <p class="council-description">
+                Represents residents and communities located within
+                Scugog Ward 1.
+              </p>
+
+              <div class="council-contact">
+                <a href="mailto:dleroy@scugog.ca">
+                  dleroy@scugog.ca
+                </a>
+
+                <a href="tel:+19058096683">
+                  905-809-6683
+                </a>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- WARD 2 -->
+          <article class="council-profile">
+
+            <div class="council-photo">
+              <img
+                src="/assets/2022_2026_council_pics/janna-guido.jpg"
+                alt="Scugog Ward 2 Councillor Janna Guido"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="council-profile-body">
+
+              <span class="council-role">Ward 2</span>
+
+              <h3>Janna Guido</h3>
+
+              <p class="council-description">
+                Represents residents and communities located within
+                Scugog Ward 2.
+              </p>
+
+              <div class="council-contact">
+                <a href="mailto:jguido@scugog.ca">
+                  jguido@scugog.ca
+                </a>
+
+                <a href="tel:+19058097345">
+                  905-809-7345
+                </a>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- WARD 3 -->
+          <article class="council-profile">
+
+            <div class="council-photo">
+              <img
+                src="/assets/2022_2026_council_pics/robert-rock.jpg"
+                alt="Scugog Ward 3 Councillor Robert Rock"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="council-profile-body">
+
+              <span class="council-role">Ward 3</span>
+
+              <h3>Robert Rock</h3>
+
+              <p class="council-description">
+                Represents residents and communities located within
+                Scugog Ward 3.
+              </p>
+
+              <div class="council-contact">
+                <a href="mailto:rrock@scugog.ca">
+                  rrock@scugog.ca
+                </a>
+
+                <a href="tel:+19052604725">
+                  905-260-4725
+                </a>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- WARD 4 -->
+          <article class="council-profile">
+
+            <div class="council-photo">
+              <img
+                src="/assets/2022_2026_council_pics/harold-wright.jpg"
+                alt="Scugog Ward 4 Councillor Harold Wright"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="council-profile-body">
+
+              <span class="council-role">Ward 4</span>
+
+              <h3>Harold Wright</h3>
+
+              <p class="council-description">
+                Represents residents and communities located within
+                Scugog Ward 4.
+              </p>
+
+              <div class="council-contact">
+                <a href="mailto:hwright@scugog.ca">
+                  hwright@scugog.ca
+                </a>
+
+                <a href="tel:+19052136226">
+                  905-213-6226
+                </a>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- WARD 5 -->
+          <article class="council-profile">
+
+            <div class="council-photo">
+              <img
+                src="/assets/2022_2026_council_pics/terry-coyne.jpg"
+                alt="Scugog Ward 5 Councillor Terry Coyne"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="council-profile-body">
+
+              <span class="council-role">Ward 5</span>
+
+              <h3>Terry Coyne</h3>
+
+              <p class="council-description">
+                Represents residents and communities located within
+                Scugog Ward 5.
+              </p>
+
+              <div class="council-contact">
+                <a href="mailto:tcoyne@scugog.ca">
+                  tcoyne@scugog.ca
+                </a>
+
+                <a href="tel:+19052130311">
+                  905-213-0311
+                </a>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- FIND YOUR WARD -->
+          <article class="council-profile">
+
+            <div class="council-profile-body">
+
+              <span class="council-role">Representation</span>
+
+              <h3>Not sure which ward you live in?</h3>
+
+              <p class="council-description">
+                Ward boundaries determine which local councillor represents
+                your address. The Township’s official resources can help
+                residents confirm their ward.
+              </p>
+
+              <div class="council-contact">
+                <a
+                  href="https://www.scugog.ca/council-and-administration/mayor-and-council/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View official Council information →
+                </a>
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- COUNCIL EXPLAINER -->
+    <section class="section">
+      <div class="container civic-explainer">
+
+        <aside class="civic-facts">
+
+          <h3>Term at a glance</h3>
+
+          <dl>
+
+            <div>
+              <dt>Municipal term</dt>
+              <dd>2022–2026</dd>
+            </div>
+
+            <div>
+              <dt>Council size</dt>
+              <dd>Seven elected members</dd>
+            </div>
+
+            <div>
+              <dt>Township-wide offices</dt>
+              <dd>Mayor and Regional Councillor</dd>
+            </div>
+
+            <div>
+              <dt>Local offices</dt>
+              <dd>Five Ward Councillors</dd>
+            </div>
+
+            <div>
+              <dt>Next election</dt>
+              <dd>October 26, 2026</dd>
+            </div>
+
+          </dl>
+
+        </aside>
+
+
+        <article class="article">
+
+          <span class="eyebrow">How it works</span>
+
+          <h2>How Scugog Council is structured</h2>
+
+          <p>
+            Scugog voters elect a Mayor and Regional Councillor through
+            Township-wide votes. Residents also elect one councillor to
+            represent each of the municipality’s five wards.
+          </p>
+
+          <p>
+            The Mayor and Regional Councillor sit on Durham Regional Council
+            in addition to serving locally. Regional Council is responsible
+            for services and policy areas delivered across Durham Region,
+            while Scugog Council addresses matters under the Township’s
+            jurisdiction.
+          </p>
+
+          <p>
+            Township Council considers local budgets, taxation, roads,
+            recreation, parks, municipal facilities, planning applications,
+            development proposals and local by-laws.
+          </p>
+
+          <div class="pullquote">
+            Council decisions are made collectively through motions and
+            recorded votes. Individual members cannot independently direct
+            Township operations.
+          </div>
+
+          <h2>Contacting an elected official</h2>
+
+          <p>
+            Residents may contact Council members directly using their
+            official municipal email addresses and telephone numbers.
+            Constituents commonly contact councillors about local services,
+            neighbourhood concerns, upcoming agenda items and decisions
+            before Council.
+          </p>
+
+          <p>
+            Formal correspondence related to a public meeting may become
+            part of the Township’s public record. Residents seeking to make
+            a formal delegation should consult the Township’s meeting and
+            Clerk’s Department information before the meeting deadline.
+          </p>
+
+          <div class="official-links">
+
+            <a
+              class="official-link"
+              href="https://www.scugog.ca/council-and-administration/mayor-and-council/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Official Council directory
+            </a>
+
+            <a
+              class="official-link"
+              href="https://calendar.scugog.ca/meetings"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Council meetings and agendas
+            </a>
+
+            <a
+              class="official-link"
+              href="https://www.scugog.ca/council-and-administration/election/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              2026 election information
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
   <div data-footer></div>
   <div data-bottom></div>
+
   <script src="/app.js"></script>
+
 </body>
 </html>
