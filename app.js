@@ -1,10 +1,8 @@
 
 const pages = [
   ["index.html","Home"],
-  ["council.html","Council Watch"],
-  ["issues.html","Key Issues"],
-  ["spending.html","Spending"],
-  ["development.html","Growth & Development"],
+  ["council.html","Council"],
+  ["news.html","News"],
   ["opinion.html","Opinion"],
   ["election.html","Election 2026"],
   ["about.html","About"]
@@ -14,7 +12,7 @@ function currentFile(){
   return location.pathname.split("/").pop() || "index.html";
 }
 
-function renderSiteChrome(){
+function renderChrome(){
   const current=currentFile();
   const header=document.querySelector("[data-header]");
   const footer=document.querySelector("[data-footer]");
@@ -26,7 +24,7 @@ function renderSiteChrome(){
       <div class="top-strip">
         <div class="container">
           <span>Independent local civic coverage for Scugog</span>
-          <span><a href="about.html">How we label news, analysis and opinion</a></span>
+          <span><a href="about.html">News, opinion and Council coverage are clearly labelled</a></span>
         </div>
       </div>
       <header class="site-header">
@@ -36,15 +34,14 @@ function renderSiteChrome(){
             <span class="brand-copy"><strong>The Scugog Scoop</strong><span>Local decisions. Clear information.</span></span>
           </a>
           <nav class="desktop-nav" aria-label="Primary navigation">
-            ${pages.slice(1,7).map(([href,label])=>`<a href="${href}" ${current===href?'aria-current="page"':''}>${label}</a>`).join("")}
-            <a class="nav-cta" href="about.html">About</a>
+            ${pages.map(([href,label])=>`<a href="${href}" ${current===href?'aria-current="page"':''}>${label}</a>`).join("")}
           </nav>
           <button class="menu-btn" aria-label="Open navigation" aria-expanded="false"><span class="menu-lines"></span></button>
         </div>
       </header>
       <div class="mobile-menu" aria-hidden="true">
         <nav>
-          ${pages.map(([href,label])=>`<a href="${href}" class="${href==="council.html"?'mobile-primary':''}" ${current===href?'aria-current="page"':''}>${label}</a>`).join("")}
+          ${pages.map(([href,label])=>`<a href="${href}" ${current===href?'aria-current="page"':''}>${label}</a>`).join("")}
         </nav>
       </div>`;
   }
@@ -55,14 +52,14 @@ function renderSiteChrome(){
         <div class="container footer-grid">
           <div>
             <strong>The Scugog Scoop</strong>
-            <p>An independent civic information and opinion project focused on Township of Scugog decisions, spending, growth and local issues.</p>
+            <p>An independent civic news and opinion project covering Council, local issues and the 2026 municipal election.</p>
             <p><small>Not affiliated with the Township of Scugog, Council, any political party or any candidate.</small></p>
           </div>
-          <nav class="footer-links" aria-label="Footer links">
-            <a href="about.html">About</a>
-            <a href="council.html">Council Watch</a>
+          <nav class="footer-links">
+            <a href="council.html">Council</a>
+            <a href="news.html">News</a>
             <a href="opinion.html">Opinion</a>
-            <a href="election.html">Election 2026</a>
+            <a href="about.html">About</a>
           </nav>
         </div>
       </footer>`;
@@ -72,7 +69,7 @@ function renderSiteChrome(){
     const items=[
       ["index.html","⌂","Home"],
       ["council.html","◷","Council"],
-      ["issues.html","◎","Issues"],
+      ["news.html","▤","News"],
       ["election.html","★","Election"]
     ];
     bottom.innerHTML=`<nav class="mobile-bottom" aria-label="Quick navigation">
@@ -92,20 +89,4 @@ function renderSiteChrome(){
   }
 }
 
-function setupCopy(){
-  document.querySelectorAll("[data-copy]").forEach(btn=>{
-    btn.addEventListener("click",async()=>{
-      try{
-        await navigator.clipboard.writeText(location.href);
-        const old=btn.textContent;
-        btn.textContent="Link copied";
-        setTimeout(()=>btn.textContent=old,1500);
-      }catch{
-        alert("Copying is not available in this browser.");
-      }
-    });
-  });
-}
-
-renderSiteChrome();
-setupCopy();
+renderChrome();
