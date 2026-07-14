@@ -2,35 +2,1573 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="description" content="Scugog Municipal Election 2026 coverage.">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,viewport-fit=cover"
+  >
+
+  <meta
+    name="description"
+    content="Follow the candidates, issues and important dates in the 2026 Scugog Municipal Election."
+  >
+
   <meta name="theme-color" content="#17372b">
+
   <title>Election 2026 | The Scugog Scoop</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="/styles.css">
+
+  <style>
+    .election-intro {
+      max-width: 860px;
+    }
+
+    .development-banner {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      margin-top: 34px;
+      padding: 22px 24px;
+      border: 1px solid rgba(23, 55, 43, 0.14);
+      border-radius: 18px;
+      background: rgba(237, 244, 240, 0.82);
+    }
+
+    .development-icon {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      place-items: center;
+      border-radius: 50%;
+      background: #17372b;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 900;
+    }
+
+    .development-banner h2 {
+      margin: 0 0 6px;
+      color: #17372b;
+      font-size: 1.05rem;
+      font-weight: 850;
+    }
+
+    .development-banner p {
+      margin: 0;
+      color: #5d6b64;
+      font-size: 0.94rem;
+      line-height: 1.65;
+    }
+
+    .election-overview {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .election-stat {
+      padding: 24px;
+      border: 1px solid rgba(23, 55, 43, 0.12);
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .election-stat strong {
+      display: block;
+      margin-bottom: 7px;
+      color: #17372b;
+      font-size: clamp(1.45rem, 3vw, 2.15rem);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+    }
+
+    .election-stat span {
+      color: #5d6b64;
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .candidate-section + .candidate-section {
+      padding-top: 20px;
+    }
+
+    .candidate-section-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 28px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(23, 55, 43, 0.12);
+    }
+
+    .candidate-section-heading h2 {
+      margin: 6px 0 0;
+    }
+
+    .candidate-section-heading p {
+      max-width: 520px;
+      margin: 0;
+      color: #5d6b64;
+      font-size: 0.94rem;
+      line-height: 1.65;
+    }
+
+    .candidate-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .candidate-card {
+      display: flex;
+      overflow: hidden;
+      flex-direction: column;
+      min-height: 100%;
+      border: 1px solid rgba(23, 55, 43, 0.12);
+      border-radius: 22px;
+      background: #fff;
+      box-shadow: 0 12px 34px rgba(23, 55, 43, 0.06);
+      transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .candidate-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 42px rgba(23, 55, 43, 0.11);
+    }
+
+    .candidate-photo {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 11;
+      background: #e8efeb;
+    }
+
+    .candidate-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .candidate-initials {
+      display: grid;
+      position: absolute;
+      inset: 0;
+      place-items: center;
+      background:
+        radial-gradient(
+          circle at 72% 24%,
+          rgba(255, 255, 255, 0.85),
+          transparent 30%
+        ),
+        #e8efeb;
+      color: #17372b;
+      font-size: clamp(2.2rem, 7vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -0.06em;
+    }
+
+    .candidate-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 24px;
+    }
+
+    .candidate-office {
+      width: fit-content;
+      display: inline-flex;
+      margin-bottom: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #edf4f0;
+      color: #17372b;
+      font-size: 0.7rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .candidate-card h3 {
+      margin: 0 0 10px;
+      color: #17372b;
+      font-size: 1.55rem;
+      font-weight: 900;
+      letter-spacing: -0.045em;
+      line-height: 1.08;
+    }
+
+    .candidate-status {
+      margin: 0 0 18px;
+      color: #5d6b64;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .profile-placeholder {
+      margin: 0 0 20px;
+      color: #66736d;
+      font-size: 0.93rem;
+      line-height: 1.65;
+    }
+
+    .candidate-fields {
+      display: grid;
+      gap: 10px;
+      margin: 0 0 20px;
+      padding: 17px 0;
+      border-top: 1px solid rgba(23, 55, 43, 0.09);
+      border-bottom: 1px solid rgba(23, 55, 43, 0.09);
+    }
+
+    .candidate-field {
+      display: grid;
+      grid-template-columns: 84px minmax(0, 1fr);
+      gap: 10px;
+      font-size: 0.83rem;
+      line-height: 1.45;
+    }
+
+    .candidate-field dt {
+      color: #78847e;
+      font-weight: 700;
+    }
+
+    .candidate-field dd {
+      min-width: 0;
+      margin: 0;
+      color: #17372b;
+      font-weight: 750;
+      overflow-wrap: anywhere;
+    }
+
+    .candidate-field a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .candidate-field a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .candidate-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: auto;
+    }
+
+    .candidate-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 13px;
+      border: 1px solid rgba(23, 55, 43, 0.16);
+      border-radius: 10px;
+      color: #17372b;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .candidate-button:hover {
+      background: #17372b;
+      color: #fff;
+    }
+
+    .candidate-button.disabled {
+      cursor: default;
+      opacity: 0.54;
+      pointer-events: none;
+    }
+
+    .coming-card {
+      display: grid;
+      min-height: 350px;
+      place-items: center;
+      padding: 30px;
+      border: 1px dashed rgba(23, 55, 43, 0.24);
+      border-radius: 22px;
+      background: rgba(237, 244, 240, 0.54);
+      text-align: center;
+    }
+
+    .coming-card h3 {
+      margin: 0 0 10px;
+      color: #17372b;
+      font-size: 1.35rem;
+    }
+
+    .coming-card p {
+      max-width: 320px;
+      margin: 0;
+      color: #66736d;
+      line-height: 1.65;
+    }
+
+    .election-roadmap {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .roadmap-card {
+      padding: 22px;
+      border: 1px solid rgba(23, 55, 43, 0.12);
+      border-radius: 17px;
+      background: #fff;
+    }
+
+    .roadmap-number {
+      display: block;
+      margin-bottom: 16px;
+      color: rgba(23, 55, 43, 0.32);
+      font-size: 1.7rem;
+      font-weight: 900;
+    }
+
+    .roadmap-card h3 {
+      margin: 0 0 9px;
+      color: #17372b;
+      font-size: 1.02rem;
+    }
+
+    .roadmap-card p {
+      margin: 0;
+      color: #66736d;
+      font-size: 0.87rem;
+      line-height: 1.6;
+    }
+
+    .election-note {
+      margin-top: 28px;
+      padding: 22px 24px;
+      border-left: 4px solid #17372b;
+      border-radius: 0 14px 14px 0;
+      background: #edf4f0;
+      color: #44534c;
+      font-size: 0.93rem;
+      line-height: 1.7;
+    }
+
+    .source-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+      margin-top: 26px;
+    }
+
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 16px;
+      border: 1px solid rgba(23, 55, 43, 0.17);
+      border-radius: 11px;
+      color: #17372b;
+      font-size: 0.86rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .source-link:hover {
+      background: #17372b;
+      color: #fff;
+    }
+
+    @media (max-width: 1050px) {
+      .candidate-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .election-roadmap {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .election-overview,
+      .candidate-grid,
+      .election-roadmap {
+        grid-template-columns: 1fr;
+      }
+
+      .candidate-section-heading {
+        display: block;
+      }
+
+      .candidate-section-heading p {
+        margin-top: 12px;
+      }
+
+      .development-banner {
+        padding: 19px;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .candidate-body {
+        padding: 21px;
+      }
+
+      .candidate-field {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      .source-links,
+      .candidate-actions {
+        display: grid;
+      }
+    }
+  </style>
 </head>
+
 <body>
+
   <div data-header></div>
+
   <main>
-<section class="hero">
-  <div class="container">
-    <span class="eyebrow">Election 2026</span>
-    <h1>Coverage will grow as the <em>campaign begins.</em></h1>
-    <p class="lead">Candidate profiles, questionnaires and election information will be added over time.</p>
-  </div>
-</section>
-<section class="section">
-  <div class="container card-grid">
-    <article class="simple-card"><h3>Candidate profiles</h3><p>Coming later.</p></article>
-    <article class="simple-card"><h3>Issue comparisons</h3><p>Coming later.</p></article>
-    <article class="simple-card"><h3>Election dates</h3><p>Coming later.</p></article>
-  </div>
-</section>
-</main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+
+        <span class="eyebrow">Election 2026</span>
+
+        <div class="election-intro">
+
+          <h1>
+            Scugog’s working
+            <em>Election Guide.</em>
+          </h1>
+
+          <p class="lead">
+            Follow the candidates, campaign issues and important information
+            shaping the 2026 Scugog Municipal Election.
+          </p>
+
+        </div>
+
+
+        <div class="development-banner">
+
+          <div class="development-icon" aria-hidden="true">i</div>
+
+          <div>
+            <h2>This page is actively being built</h2>
+
+            <p>
+              Candidate photographs, biographies, campaign links, stated
+              priorities, questionnaires and additional election information
+              will be added as they become available. The layout is complete,
+              but some profiles currently contain temporary placeholders.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="election-overview">
+
+          <div class="election-stat">
+            <strong>16</strong>
+            <span>Municipal candidates currently listed below</span>
+          </div>
+
+          <div class="election-stat">
+            <strong>7</strong>
+            <span>Positions on Scugog Township Council</span>
+          </div>
+
+          <div class="election-stat">
+            <strong>Aug. 21</strong>
+            <span>Nomination deadline at 2:00 p.m.</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- MAYOR -->
+    <section class="section candidate-section">
+      <div class="container">
+
+        <div class="candidate-section-heading">
+
+          <div>
+            <span class="eyebrow">Township-wide race</span>
+            <h2>Mayor</h2>
+          </div>
+
+          <p>
+            The Mayor is elected by voters across the Township and serves on
+            both Scugog Council and Durham Regional Council.
+          </p>
+
+        </div>
+
+
+        <div class="candidate-grid">
+
+          <article class="candidate-card">
+
+            <div class="candidate-photo">
+
+              <img
+                src="/assets/2026_candidates/wilma-wotten.webp"
+                alt="Wilma Wotten"
+                loading="eager"
+                onerror="this.style.display='none'"
+              >
+
+              <div class="candidate-initials" aria-hidden="true">WW</div>
+
+            </div>
+
+            <div class="candidate-body">
+
+              <span class="candidate-office">Mayor</span>
+              <h3>Wilma Wotten</h3>
+
+              <p class="candidate-status">
+                Nomination filed · Profile in development
+              </p>
+
+              <p class="profile-placeholder">
+                Candidate biography, campaign priorities and questionnaire
+                responses will be added here.
+              </p>
+
+              <dl class="candidate-fields">
+
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd>
+                    <a href="tel:+19052616607">905-261-6607</a>
+                  </dd>
+                </div>
+
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:reelectwilmaformayor@gmail.com">
+                      reelectwilmaformayor@gmail.com
+                    </a>
+                  </dd>
+                </div>
+
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+
+              </dl>
+
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <article class="candidate-card">
+
+            <div class="candidate-photo">
+
+              <img
+                src="/assets/2026_candidates/mike-coll.webp"
+                alt="Mike Coll"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+
+              <div class="candidate-initials" aria-hidden="true">MC</div>
+
+            </div>
+
+            <div class="candidate-body">
+
+              <span class="candidate-office">Mayor</span>
+              <h3>Mike Coll</h3>
+
+              <p class="candidate-status">
+                Nomination filed · Profile in development
+              </p>
+
+              <p class="profile-placeholder">
+                Candidate biography, campaign priorities and questionnaire
+                responses will be added here.
+              </p>
+
+              <dl class="candidate-fields">
+
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd>
+                    <a href="tel:+12893549145">289-354-9145</a>
+                  </dd>
+                </div>
+
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:mikecollforscugog@gmail.com">
+                      mikecollforscugog@gmail.com
+                    </a>
+                  </dd>
+                </div>
+
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+
+              </dl>
+
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <article class="candidate-card">
+
+            <div class="candidate-photo">
+
+              <img
+                src="/assets/2026_candidates/ian-mcdougall.webp"
+                alt="Ian McDougall"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+
+              <div class="candidate-initials" aria-hidden="true">IM</div>
+
+            </div>
+
+            <div class="candidate-body">
+
+              <span class="candidate-office">Mayor</span>
+              <h3>Ian McDougall</h3>
+
+              <p class="candidate-status">
+                Nomination filed · Profile in development
+              </p>
+
+              <p class="profile-placeholder">
+                Candidate biography, campaign priorities and questionnaire
+                responses will be added here.
+              </p>
+
+              <dl class="candidate-fields">
+
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd>Not listed</dd>
+                </div>
+
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:mcdougall4scugog@gmail.com">
+                      mcdougall4scugog@gmail.com
+                    </a>
+                  </dd>
+                </div>
+
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+
+              </dl>
+
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- REGIONAL COUNCILLOR -->
+    <section class="section candidate-section">
+      <div class="container">
+
+        <div class="candidate-section-heading">
+
+          <div>
+            <span class="eyebrow">Township-wide race</span>
+            <h2>Regional Councillor</h2>
+          </div>
+
+          <p>
+            The Regional Councillor serves on both Scugog Township Council
+            and Durham Regional Council.
+          </p>
+
+        </div>
+
+
+        <div class="candidate-grid">
+
+          <article class="candidate-card">
+
+            <div class="candidate-photo">
+              <img
+                src="/assets/2026_candidates/terry-coyne.webp"
+                alt="Terry Coyne"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+              <div class="candidate-initials" aria-hidden="true">TC</div>
+            </div>
+
+            <div class="candidate-body">
+
+              <span class="candidate-office">Regional Councillor</span>
+              <h3>Terry Coyne</h3>
+
+              <p class="candidate-status">
+                Nomination filed · Profile in development
+              </p>
+
+              <p class="profile-placeholder">
+                Candidate biography, campaign priorities and questionnaire
+                responses will be added here.
+              </p>
+
+              <dl class="candidate-fields">
+
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd>
+                    <a href="tel:+19054319227">905-431-9227</a>
+                  </dd>
+                </div>
+
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:tech2545@gmail.com">
+                      tech2545@gmail.com
+                    </a>
+                  </dd>
+                </div>
+
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+
+              </dl>
+
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <article class="candidate-card">
+
+            <div class="candidate-photo">
+              <img
+                src="/assets/2026_candidates/patricia-conlin.webp"
+                alt="Patricia Conlin"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+              <div class="candidate-initials" aria-hidden="true">PC</div>
+            </div>
+
+            <div class="candidate-body">
+
+              <span class="candidate-office">Regional Councillor</span>
+              <h3>Patricia Conlin</h3>
+
+              <p class="candidate-status">
+                Nomination filed · Profile in development
+              </p>
+
+              <p class="profile-placeholder">
+                Candidate biography, campaign priorities and questionnaire
+                responses will be added here.
+              </p>
+
+              <dl class="candidate-fields">
+
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd>
+                    <a href="tel:+14169988369">416-998-8369</a>
+                  </dd>
+                </div>
+
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:patricia@patriciaconlin.ca">
+                      patricia@patriciaconlin.ca
+                    </a>
+                  </dd>
+                </div>
+
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+
+              </dl>
+
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <article class="candidate-card">
+
+            <div class="candidate-photo">
+              <img
+                src="/assets/2026_candidates/wayne-hancock.webp"
+                alt="Wayne Hancock"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+              <div class="candidate-initials" aria-hidden="true">WH</div>
+            </div>
+
+            <div class="candidate-body">
+
+              <span class="candidate-office">Regional Councillor</span>
+              <h3>Wayne Hancock</h3>
+
+              <p class="candidate-status">
+                Nomination filed · Profile in development
+              </p>
+
+              <p class="profile-placeholder">
+                Candidate biography, campaign priorities and questionnaire
+                responses will be added here.
+              </p>
+
+              <dl class="candidate-fields">
+
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd>
+                    <a href="tel:+19052607141">905-260-7141</a>
+                  </dd>
+                </div>
+
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:wayneforscugogcouncil@gmail.com">
+                      wayneforscugogcouncil@gmail.com
+                    </a>
+                  </dd>
+                </div>
+
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+
+              </dl>
+
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- WARD 1 -->
+    <section class="section candidate-section">
+      <div class="container">
+
+        <div class="candidate-section-heading">
+          <div>
+            <span class="eyebrow">Local race</span>
+            <h2>Ward 1 Councillor</h2>
+          </div>
+          <p>
+            Candidates seeking to represent residents of Ward 1 on Scugog
+            Township Council.
+          </p>
+        </div>
+
+        <div class="candidate-grid">
+
+          <article class="candidate-card">
+            <div class="candidate-photo">
+              <img
+                src="/assets/2026_candidates/david-le-roy.webp"
+                alt="David Le Roy"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+              <div class="candidate-initials" aria-hidden="true">DL</div>
+            </div>
+            <div class="candidate-body">
+              <span class="candidate-office">Ward 1</span>
+              <h3>David Le Roy</h3>
+              <p class="candidate-status">Nomination filed · Profile in development</p>
+              <p class="profile-placeholder">
+                Candidate biography, priorities and questionnaire responses
+                will be added here.
+              </p>
+              <dl class="candidate-fields">
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd><a href="tel:+14162748231">416-274-8231</a></dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:davidleroyforward1@gmail.com">
+                      davidleroyforward1@gmail.com
+                    </a>
+                  </dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+              </dl>
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="candidate-card">
+            <div class="candidate-photo">
+              <img
+                src="/assets/2026_candidates/scott-blachar.webp"
+                alt="Scott Blachar"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+              <div class="candidate-initials" aria-hidden="true">SB</div>
+            </div>
+            <div class="candidate-body">
+              <span class="candidate-office">Ward 1</span>
+              <h3>Scott Blachar</h3>
+              <p class="candidate-status">Nomination filed · Profile in development</p>
+              <p class="profile-placeholder">
+                Candidate biography, priorities and questionnaire responses
+                will be added here.
+              </p>
+              <dl class="candidate-fields">
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd><a href="tel:+12893808672">289-380-8672</a></dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:scottblachar@gmail.com">
+                      scottblachar@gmail.com
+                    </a>
+                  </dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+              </dl>
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- WARD 2 -->
+    <section class="section candidate-section">
+      <div class="container">
+
+        <div class="candidate-section-heading">
+          <div>
+            <span class="eyebrow">Local race</span>
+            <h2>Ward 2 Councillor</h2>
+          </div>
+          <p>
+            Candidates seeking to represent residents of Ward 2 on Scugog
+            Township Council.
+          </p>
+        </div>
+
+        <div class="candidate-grid">
+
+          <article class="candidate-card">
+            <div class="candidate-photo">
+              <img
+                src="/assets/2026_candidates/alisa-cole.webp"
+                alt="Alisa Cole"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+              <div class="candidate-initials" aria-hidden="true">AC</div>
+            </div>
+            <div class="candidate-body">
+              <span class="candidate-office">Ward 2</span>
+              <h3>Alisa Cole</h3>
+              <p class="candidate-status">Nomination filed · Profile in development</p>
+              <p class="profile-placeholder">
+                Candidate biography, priorities and questionnaire responses
+                will be added here.
+              </p>
+              <dl class="candidate-fields">
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd><a href="tel:+19059143944">905-914-3944</a></dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:alisa4ward2scugog@outlook.com">
+                      alisa4ward2scugog@outlook.com
+                    </a>
+                  </dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+              </dl>
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="candidate-card">
+            <div class="candidate-photo">
+              <img
+                src="/assets/2026_candidates/richard-hinton.webp"
+                alt="Richard Hinton"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+              <div class="candidate-initials" aria-hidden="true">RH</div>
+            </div>
+            <div class="candidate-body">
+              <span class="candidate-office">Ward 2</span>
+              <h3>Richard Hinton</h3>
+              <p class="candidate-status">Nomination filed · Profile in development</p>
+              <p class="profile-placeholder">
+                Candidate biography, priorities and questionnaire responses
+                will be added here.
+              </p>
+              <dl class="candidate-fields">
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd><a href="tel:+12896808508">289-680-8508</a></dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:richardhintonward2@gmail.com">
+                      richardhintonward2@gmail.com
+                    </a>
+                  </dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+              </dl>
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- WARD 3 -->
+    <section class="section candidate-section">
+      <div class="container">
+
+        <div class="candidate-section-heading">
+          <div>
+            <span class="eyebrow">Local race</span>
+            <h2>Ward 3 Councillor</h2>
+          </div>
+          <p>
+            Candidates seeking to represent residents of Ward 3 on Scugog
+            Township Council.
+          </p>
+        </div>
+
+        <div class="candidate-grid">
+
+          <article class="candidate-card">
+            <div class="candidate-photo">
+              <img
+                src="/assets/2026_candidates/rosario-greco.webp"
+                alt="Rosario Greco"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+              <div class="candidate-initials" aria-hidden="true">RG</div>
+            </div>
+            <div class="candidate-body">
+              <span class="candidate-office">Ward 3</span>
+              <h3>Rosario Greco</h3>
+              <p class="candidate-status">Nomination filed · Profile in development</p>
+              <p class="profile-placeholder">
+                Candidate biography, priorities and questionnaire responses
+                will be added here.
+              </p>
+              <dl class="candidate-fields">
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd>Not listed</dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:rgreco@quisk.ca">
+                      rgreco@quisk.ca
+                    </a>
+                  </dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+              </dl>
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="coming-card">
+            <div>
+              <h3>Additional candidates</h3>
+              <p>
+                New nominations will be added here as they appear on the
+                Township’s official list.
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- WARD 4 -->
+    <section class="section candidate-section">
+      <div class="container">
+
+        <div class="candidate-section-heading">
+          <div>
+            <span class="eyebrow">Local race</span>
+            <h2>Ward 4 Councillor</h2>
+          </div>
+          <p>
+            Candidates seeking to represent residents of Ward 4 on Scugog
+            Township Council.
+          </p>
+        </div>
+
+        <div class="candidate-grid">
+
+          <article class="candidate-card">
+            <div class="candidate-photo">
+              <img
+                src="/assets/2026_candidates/harold-wright.webp"
+                alt="Harold Wright"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+              <div class="candidate-initials" aria-hidden="true">HW</div>
+            </div>
+            <div class="candidate-body">
+              <span class="candidate-office">Ward 4</span>
+              <h3>Harold Wright</h3>
+              <p class="candidate-status">Nomination filed · Profile in development</p>
+              <p class="profile-placeholder">
+                Candidate biography, priorities and questionnaire responses
+                will be added here.
+              </p>
+              <dl class="candidate-fields">
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd>Not listed</dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>Not listed</dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+              </dl>
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="candidate-card">
+            <div class="candidate-photo">
+              <img
+                src="/assets/2026_candidates/brad-martyn.webp"
+                alt="Brad Martyn"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+              <div class="candidate-initials" aria-hidden="true">BM</div>
+            </div>
+            <div class="candidate-body">
+              <span class="candidate-office">Ward 4</span>
+              <h3>Brad Martyn</h3>
+              <p class="candidate-status">Nomination filed · Profile in development</p>
+              <p class="profile-placeholder">
+                Candidate biography, priorities and questionnaire responses
+                will be added here.
+              </p>
+              <dl class="candidate-fields">
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd><a href="tel:+19057186375">905-718-6375</a></dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:brad.mmh@gmail.com">
+                      brad.mmh@gmail.com
+                    </a>
+                  </dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+              </dl>
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- WARD 5 -->
+    <section class="section candidate-section">
+      <div class="container">
+
+        <div class="candidate-section-heading">
+          <div>
+            <span class="eyebrow">Local race</span>
+            <h2>Ward 5 Councillor</h2>
+          </div>
+          <p>
+            Candidates seeking to represent residents of Ward 5 on Scugog
+            Township Council.
+          </p>
+        </div>
+
+        <div class="candidate-grid">
+
+          <article class="candidate-card">
+            <div class="candidate-photo">
+              <img
+                src="/assets/2026_candidates/stephen-kotyck.webp"
+                alt="Stephen Kotyck"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+              <div class="candidate-initials" aria-hidden="true">SK</div>
+            </div>
+            <div class="candidate-body">
+              <span class="candidate-office">Ward 5</span>
+              <h3>Stephen Kotyck</h3>
+              <p class="candidate-status">Nomination filed · Profile in development</p>
+              <p class="profile-placeholder">
+                Candidate biography, priorities and questionnaire responses
+                will be added here.
+              </p>
+              <dl class="candidate-fields">
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd><a href="tel:+14165599829">416-559-9829</a></dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:stephenkotyckforward5@gmail.com">
+                      stephenkotyckforward5@gmail.com
+                    </a>
+                  </dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+              </dl>
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="candidate-card">
+            <div class="candidate-photo">
+              <img
+                src="/assets/2026_candidates/janna-guido.webp"
+                alt="Janna Guido"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+              <div class="candidate-initials" aria-hidden="true">JG</div>
+            </div>
+            <div class="candidate-body">
+              <span class="candidate-office">Ward 5</span>
+              <h3>Janna Guido</h3>
+              <p class="candidate-status">Nomination filed · Profile in development</p>
+              <p class="profile-placeholder">
+                Candidate biography, priorities and questionnaire responses
+                will be added here.
+              </p>
+              <dl class="candidate-fields">
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd><a href="tel:+19054417039">905-441-7039</a></dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:jannag7039@gmail.com">
+                      jannag7039@gmail.com
+                    </a>
+                  </dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+              </dl>
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="candidate-card">
+            <div class="candidate-photo">
+              <img
+                src="/assets/2026_candidates/marion-meyers.webp"
+                alt="Marion Meyers"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+              <div class="candidate-initials" aria-hidden="true">MM</div>
+            </div>
+            <div class="candidate-body">
+              <span class="candidate-office">Ward 5</span>
+              <h3>Marion Meyers</h3>
+              <p class="candidate-status">Nomination filed · Profile in development</p>
+              <p class="profile-placeholder">
+                Candidate biography, priorities and questionnaire responses
+                will be added here.
+              </p>
+              <dl class="candidate-fields">
+                <div class="candidate-field">
+                  <dt>Telephone</dt>
+                  <dd><a href="tel:+19059851335">905-985-1335</a></dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:marion@creativeinfusion.ca">
+                      marion@creativeinfusion.ca
+                    </a>
+                  </dd>
+                </div>
+                <div class="candidate-field">
+                  <dt>Website</dt>
+                  <dd>To be added</dd>
+                </div>
+              </dl>
+              <div class="candidate-actions">
+                <span class="candidate-button disabled">Full profile coming</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- PLANNED COVERAGE -->
+    <section class="section">
+      <div class="container">
+
+        <div class="candidate-section-heading">
+
+          <div>
+            <span class="eyebrow">Coming to this guide</span>
+            <h2>Planned election coverage</h2>
+          </div>
+
+          <p>
+            Candidate information will be expanded consistently and presented
+            in the same format for every campaign.
+          </p>
+
+        </div>
+
+
+        <div class="election-roadmap">
+
+          <article class="roadmap-card">
+            <span class="roadmap-number">01</span>
+            <h3>Photographs and profiles</h3>
+            <p>
+              Candidate-submitted photographs, biographies and verified
+              campaign links.
+            </p>
+          </article>
+
+          <article class="roadmap-card">
+            <span class="roadmap-number">02</span>
+            <h3>Candidate questionnaires</h3>
+            <p>
+              The same set of local policy questions will be sent to every
+              candidate.
+            </p>
+          </article>
+
+          <article class="roadmap-card">
+            <span class="roadmap-number">03</span>
+            <h3>Issue comparisons</h3>
+            <p>
+              Side-by-side summaries using candidates’ own stated positions
+              and responses.
+            </p>
+          </article>
+
+          <article class="roadmap-card">
+            <span class="roadmap-number">04</span>
+            <h3>Election results</h3>
+            <p>
+              Unofficial election-night results followed by the official
+              certified results.
+            </p>
+          </article>
+
+        </div>
+
+
+        <div class="election-note">
+          <strong>Important:</strong> The individuals listed on this page have
+          filed nomination papers with the Township Clerk. Nominations remain
+          subject to certification after Nomination Day. The list may change
+          as additional candidates file or existing candidates withdraw.
+        </div>
+
+
+        <div class="source-links">
+
+          <a
+            class="source-link"
+            href="https://www.scugog.ca/council-and-administration/election/2026-candidates/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Official candidate list
+          </a>
+
+          <a
+            class="source-link"
+            href="https://www.scugog.ca/council-and-administration/election/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Official election information
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
   <div data-footer></div>
   <div data-bottom></div>
+
   <script src="/app.js"></script>
+
 </body>
 </html>
