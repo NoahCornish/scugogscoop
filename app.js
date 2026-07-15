@@ -26,7 +26,7 @@ function renderChrome(){
         <div class="container header-inner">
           <a class="brand" href="/">
             <span class="brand-mark">S</span>
-            <span><strong>The Scugog Scoop</strong><small>Local decisions. Clear information.</small></span>
+            <span><strong>The Scugog Scoop</strong><small></small></span>
           </a>
           <nav class="nav">
             ${pages.map(([href,label])=>`<a href="${href}" ${current===href?'aria-current="page"':''}>${label}</a>`).join("")}
